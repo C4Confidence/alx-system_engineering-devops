@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#Bash script that displays listening ports:
+#That is showing listening sockets
+#That will also show the PID and name of the program each socket belongs
+nestat -listening --program
