@@ -1,6 +1,7 @@
 #Script that creates a file school with content being I love Puppet
-{ '/tmp/school':
-  ensure  => file,
+
+file{'/tmp/school':
+  ensure  => present,
   mode    => '0744',
   owner   => 'www-data',
   group   => 'www-data',
