@@ -1,6 +1,6 @@
 #script to install flask using pip3
 
-package { ['python-pip']:
+package { ['python3-pip']:
   ensure  => installed,
 }
 
