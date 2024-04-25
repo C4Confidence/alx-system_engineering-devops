@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# A bash script that configures a client file
+# Required to use private key ~/.ssh/school and also refuse using a password
+host 54.166.23.252
+	PasswordAUthentication no
+	User ubuntu
+	IdentityFIle ~/.ssh/school
