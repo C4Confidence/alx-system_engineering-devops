@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Script to Install Nginx
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Allow HTTP traffic through firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Change owner and permissions of web directory
+sudo chown -R "$USER:$USER" /var/www/html
+sudo chmod -R 755 /var/www/
+
+# Backup the default Nginx page
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.bak
+
+# Create a new index with "Hello World!"
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Find the appropriate location to insert the redirect rule
+redirect_config="rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "/^server {/a \\    $redirect_config" /etc/nginx/sites-available/default
+
+# Restart Nginx
+sudo service nginx restart
