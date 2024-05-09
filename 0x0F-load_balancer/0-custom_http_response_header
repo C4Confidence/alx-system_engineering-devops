@@ -14,4 +14,4 @@ sudo sed -i '/http {/ {a\
 }' /etc/nginx/nginx.conf
 
 # Restart Nginx to apply changes
-sudo systemctl restart nginx
+sudo service nginx restart
