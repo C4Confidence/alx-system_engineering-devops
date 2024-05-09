@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Install Nginx and customize HTTP response header.
+
+# Update package repository and install Nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Create a new index page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Add custom header to nginx.conf
+sudo sed -i '/http {/ {a\
+\tadd_header X-Served-By $hostname;
+}' /etc/nginx/nginx.conf
+
+# Restart Nginx to apply changes
+sudo systemctl restart nginx
