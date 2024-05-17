@@ -49,4 +49,3 @@ backend c4confidence-tech-backend
         balance roundrobin
         server 257612-web-01 34.232.69.175:80 check
         server 257612-web-02 52.207.76.104:80 check
-
