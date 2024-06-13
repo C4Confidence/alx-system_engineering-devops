@@ -1,18 +1,23 @@
 #!/usr/bin/python3
-"""Check the number of subscribers in a subreddit. """
+"""script to get total number of subscribers from a subreddit"""
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """ Given subreddit, return number of subscribers. """
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
-    headers = {'User-Agent': 'ALX by /u/C4Confidence'}
+    """code to get the number of subscribers in a subreddit"""
 
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    base_url = f'https://www.reddit.com/r/{subreddit}/about.json'
+    headers = {'User-Agent': 'C4Confidence/1.0.0'}
 
-    if response.status_code == 200:
-        subreddit_data = response.json()
-        return (subreddit_data['data']['subscribers'])
+    requested = requests.get(base_url, headers=headers, allow_redirects=False)
 
-    return 0
+    if requested.status_code != 200:
+        return 0
+
+    r_json = requested.json()
+
+    data = r_json.get("data")
+
+    subscribers = data.get("subscribers")
+    return subscribers
